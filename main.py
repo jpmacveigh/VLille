@@ -23,8 +23,8 @@ def index():
     stations=[] # la listes de toutes les stations V'Lille
     for i in range(len(re["records"])):
         stations.append(Station_VLille(re["records"][i]))
-    loc=[50.65, 3.07] # centre de la carte
-    map = folium.Map(location=loc,zoom_start=14) # création de la carte
+    loc=[50.637189307225405, 3.0590418369440107] # centre de la carte
+    map = folium.Map(location=loc,zoom_start=15) # création de la carte
     for station in stations:  # markers des stations V'Lille
         folium.Marker(station.geo,popup=station.pop(),icon=folium.Icon(color=station.color_marker)).add_to(map)
     folium.Marker([50.687,3.075],popup="Aérodrome LFQQ").add_to(map)  # marker de aérodrome Lille-Marcq

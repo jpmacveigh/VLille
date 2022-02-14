@@ -12,6 +12,7 @@ from flask import Flask
 import folium
 import requests
 import json
+import datetime
 from Station_VLille import Station_VLille
 app = Flask(__name__)
 @app.route('/')
@@ -28,6 +29,9 @@ def index():
     for station in stations:  # markers des stations V'Lille
         folium.Marker(station.geo,popup=station.pop(),icon=folium.Icon(color=station.color_marker)).add_to(map)
     folium.Marker([50.687,3.075],popup="Aérodrome LFQQ").add_to(map)  # marker de aérodrome Lille-Marcq
+    titre = datetime.datetime.now().strftime('%a, %d %b %Y %H:%M:%S UTC')
+    title_html = f'<h3 align="center" style="font-size:16px"><b>{titre}</b></h3>'
+    map.get_root().html.add_child(folium.Element(title_html))
     map.save("map.html")  # sauvegarde du fichier html contenant la carte
     return map._repr_html_() # affichage de la carte par Flask
 if __name__=='__main__':

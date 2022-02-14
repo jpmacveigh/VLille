@@ -7,8 +7,11 @@ class Station_VLille:
     self.libres=record["nbplacesdispo"]
     self.état=record["etat"]
     self.color_marker="green"
-    self.capa=self.libres+self.vélos # ??
-    if (self.libres<=2 or self.vélos <=2): self.color_marker="orange"
+    if (self.vélos <=2): self.color_marker="orange"
+    if (self.libres<=2): self.color_marker="purple"
+    if (self.libres<=2 and self.vélos <=2): self.color_marker="purple"
+    
+    
   def pop(self):
     if self.état=="EN SERVICE":
       état=self.état.lower()
